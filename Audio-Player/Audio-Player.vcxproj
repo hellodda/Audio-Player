@@ -107,33 +107,33 @@
     <Manifest Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BindableBase.h" />
-    <ClInclude Include="Locator.h" />
-    <ClInclude Include="MainViewModel.h">
-      <DependentUpon>MainViewModel.idl</DependentUpon>
+    <ClInclude Include="Framework\BindableBase.h" />
+    <ClInclude Include="ViewModels\Locator.h" />
+    <ClInclude Include="ViewModels\MainViewModel.h">
+      <DependentUpon>ViewModels\MainViewModel.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
     <ClInclude Include="pch.h" />
     <ClInclude Include="App.xaml.h">
       <DependentUpon>App.xaml</DependentUpon>
     </ClInclude>
-    <ClInclude Include="MainWindow.xaml.h">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <ClInclude Include="Views\MainWindow.xaml.h">
+      <DependentUpon>Views\MainWindow.xaml</DependentUpon>
     </ClInclude>
-    <ClInclude Include="SongModel.h">
-      <DependentUpon>SongModel.idl</DependentUpon>
+    <ClInclude Include="Models\SongModel.h">
+      <DependentUpon>Models\SongModel.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
-    <Page Include="MainWindow.xaml" />
+    <Page Include="Views\MainWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BindableBase.cpp" />
-    <ClCompile Include="Locator.cpp" />
-    <ClCompile Include="MainViewModel.cpp">
-      <DependentUpon>MainViewModel.idl</DependentUpon>
+    <ClCompile Include="Framework\BindableBase.cpp" />
+    <ClCompile Include="ViewModels\Locator.cpp" />
+    <ClCompile Include="ViewModels\MainViewModel.cpp">
+      <DependentUpon>ViewModels\MainViewModel.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
     <ClCompile Include="pch.cpp">
@@ -142,24 +142,24 @@
     <ClCompile Include="App.xaml.cpp">
       <DependentUpon>App.xaml</DependentUpon>
     </ClCompile>
-    <ClCompile Include="MainWindow.xaml.cpp">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <ClCompile Include="Views\MainWindow.xaml.cpp">
+      <DependentUpon>Views\MainWindow.xaml</DependentUpon>
     </ClCompile>
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
-    <ClCompile Include="SongModel.cpp">
-      <DependentUpon>SongModel.idl</DependentUpon>
+    <ClCompile Include="Models\SongModel.cpp">
+      <DependentUpon>Models\SongModel.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="MainViewModel.idl">
+    <Midl Include="ViewModels\MainViewModel.idl">
       <SubType>Designer</SubType>
     </Midl>
-    <Midl Include="MainWindow.idl">
+    <Midl Include="Views\MainWindow.idl">
       <SubType>Code</SubType>
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <DependentUpon>Views\MainWindow.xaml</DependentUpon>
     </Midl>
-    <Midl Include="SongModel.idl">
+    <Midl Include="Models\SongModel.idl">
       <SubType>Designer</SubType>
     </Midl>
   </ItemGroup>

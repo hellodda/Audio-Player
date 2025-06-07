@@ -5,29 +5,29 @@
   </ItemGroup>
   <ItemGroup>
     <Midl Include="MainWindow.idl" />
-    <Midl Include="MainViewModel.idl">
+    <Midl Include="ViewModels\MainViewModel.idl">
       <Filter>ViewModels</Filter>
     </Midl>
-    <Midl Include="SongModel.idl">
+    <Midl Include="Models\SongModel.idl">
       <Filter>Models</Filter>
     </Midl>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
-    <ClCompile Include="Locator.cpp">
+    <ClCompile Include="ViewModels\Locator.cpp">
       <Filter>ViewModels</Filter>
     </ClCompile>
-    <ClCompile Include="BindableBase.cpp">
+    <ClCompile Include="Framework\BindableBase.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="Locator.h">
+    <ClInclude Include="ViewModels\Locator.h">
       <Filter>ViewModels</Filter>
     </ClInclude>
-    <ClInclude Include="BindableBase.h">
+    <ClInclude Include="Framework\BindableBase.h">
       <Filter>Framework</Filter>
     </ClInclude>
   </ItemGroup>
@@ -84,8 +84,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\MainWindow.xaml">
       <Filter>Views</Filter>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natvis" />
+    <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natstepfilter" />
   </ItemGroup>
 </Project>

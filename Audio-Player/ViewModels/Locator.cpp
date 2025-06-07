@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Locator.h"
-#include "MainViewModel.h"
+#include "ViewModels/MainViewModel.h"
 
 namespace winrt::Audio_Player::ViewModels
 {

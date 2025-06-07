@@ -4,7 +4,7 @@
 #include "MainWindow.g.cpp"
 #endif
 
-#include "SongModel.h"
+#include "Models/SongModel.h"
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;

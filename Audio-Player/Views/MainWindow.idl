@@ -1,4 +1,4 @@
-import "MainViewModel.idl";
+import "ViewModels/MainViewModel.idl";
 
 
 namespace Audio_Player

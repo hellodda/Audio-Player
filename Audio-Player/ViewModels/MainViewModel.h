@@ -3,8 +3,8 @@
 #include "MainViewModel.g.h"
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.Foundation.Collections.h>
-#include "SongModel.h"
-#include "BindableBase.h"
+#include "Models/SongModel.h"
+#include "Framework/BindableBase.h"
 
 using namespace winrt;
 using namespace winrt::Windows::Foundation;

@@ -1,8 +1,8 @@
 #pragma once
 
 #include "MainWindow.g.h"
-#include "MainViewModel.h"
-#include "Locator.h"
+#include "ViewModels/MainViewModel.h"
+#include "ViewModels/Locator.h"
 
 namespace winrt::Audio_Player::implementation
 {

@@ -16,9 +16,9 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
-        
-        
+
+
+
         <ListView x:Name="MyListView"
           CanDragItems="True"
           CanReorderItems="True"
@@ -43,24 +43,33 @@
                             <Border CornerRadius="10">
                                 <Image Width="60" Height="60" Source="{x:Bind ImagePath}" />
                             </Border>
-                            
+
                             <TextBlock Text="{x:Bind Title}" VerticalAlignment="Center" FontSize="16" />
-   
+
                         </StackPanel>
                     </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
+       
+        
         <Image Grid.Column="1" Source="{x:Bind MainViewModel.SelectedSong.ImagePath, Mode=OneWay}" Stretch="UniformToFill"/>
     
 
         <Border Grid.Column="1">
-            
+
             <Border.Background>
                 <AcrylicBrush TintColor="White" TintOpacity="0.01"/>
             </Border.Background>
-            
         </Border>
+
+        <MediaPlayerElement Grid.Column="1"
+                    AreTransportControlsEnabled="True"
+                    AutoPlay="False"
+                    Width="auto"
+                    Height="auto"
+                    Stretch="UniformToFill"
+                    />
+
     </Grid>
 </Window>

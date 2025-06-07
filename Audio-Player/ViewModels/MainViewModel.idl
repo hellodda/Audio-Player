@@ -1,4 +1,4 @@
-import "SongModel.idl";
+import "Models/SongModel.idl";
 
 namespace Audio_Player
 {
