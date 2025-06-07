@@ -54,7 +54,7 @@
        
         
         <Image Grid.Column="1" Source="{x:Bind MainViewModel.SelectedSong.ImagePath, Mode=OneWay}" Stretch="UniformToFill"/>
-    
+
 
         <Border Grid.Column="1">
 
@@ -63,6 +63,15 @@
             </Border.Background>
         </Border>
 
+        <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="5">
+            <Border CornerRadius="10">
+                <Image Source="{x:Bind MainViewModel.SelectedSong.ImagePath, Mode=OneWay}" Stretch="UniformToFill" Width="250" Height="250"/>
+            </Border>
+            <TextBlock Text="{x:Bind MainViewModel.SelectedSong.Title, Mode=OneWay}"/>
+        </StackPanel>
+        
+      
+        
         <MediaPlayerElement Grid.Column="1"
                     AreTransportControlsEnabled="True"
                     AutoPlay="False"
