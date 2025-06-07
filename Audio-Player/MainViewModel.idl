@@ -1,0 +1,13 @@
+import "SongModel.idl";
+
+namespace Audio_Player
+{
+    [bindable]
+    [default_interface]
+    runtimeclass MainViewModel : Microsoft.UI.Xaml.Data.INotifyPropertyChanged
+    {
+        MainViewModel();
+        Windows.Foundation.Collections.IObservableVector<Audio_Player.SongModel> Songs;
+        Audio_Player.SongModel SelectedSong;
+    }
+}

@@ -1,0 +1,11 @@
+namespace Audio_Player
+{
+    [bindable]
+    [default_interface]
+    runtimeclass SongModel 
+    {
+        SongModel();
+        String ImagePath;   
+        String Title;
+    }
+}
