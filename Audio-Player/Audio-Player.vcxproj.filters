@@ -17,6 +17,7 @@
       <Filter>Framework</Filter>
     </ClCompile>
     <ClCompile Include="Framework\Logger.cpp" />
+    <ClCompile Include="Framework\SongProvider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -25,6 +26,8 @@
     </ClInclude>
     <ClInclude Include="Framework\Logger.h" />
     <ClInclude Include="Framework\ILogger.h" />
+    <ClInclude Include="Framework\SongProvider.h" />
+    <ClInclude Include="Framework\ISongProvider.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Wide310x150Logo.scale-200.png">

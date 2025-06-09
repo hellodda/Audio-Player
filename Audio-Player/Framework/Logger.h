@@ -23,6 +23,9 @@ namespace winrt::Audio_Player::Framework
 
 		void LogTrace(std::string const& message) override;
 		void Trace(std::wstring const& message);
+
+		void LogWarning(std::string const& message) override;
+		void LogWarning(std::wstring const& message);
 	};
 }
 

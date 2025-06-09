@@ -113,7 +113,9 @@
   <ItemGroup>
     <ClInclude Include="Framework\BindableBase.h" />
     <ClInclude Include="Framework\ILogger.h" />
+    <ClInclude Include="Framework\ISongProvider.h" />
     <ClInclude Include="Framework\Logger.h" />
+    <ClInclude Include="Framework\SongProvider.h" />
     <ClInclude Include="ViewModels\MainViewModel.h">
       <DependentUpon>ViewModels\MainViewModel.idl</DependentUpon>
       <SubType>Code</SubType>
@@ -137,6 +139,7 @@
   <ItemGroup>
     <ClCompile Include="Framework\BindableBase.cpp" />
     <ClCompile Include="Framework\Logger.cpp" />
+    <ClCompile Include="Framework\SongProvider.cpp" />
     <ClCompile Include="ViewModels\MainViewModel.cpp">
       <DependentUpon>ViewModels\MainViewModel.idl</DependentUpon>
       <SubType>Code</SubType>

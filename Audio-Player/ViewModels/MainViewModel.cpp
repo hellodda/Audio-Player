@@ -10,10 +10,12 @@ namespace winrt::Audio_Player::implementation
 	{
 		
 	}
-	void MainViewModel::Inject(std::shared_ptr<Framework::ILogger> logger)
+	void MainViewModel::Inject(std::shared_ptr<Framework::ILogger> logger, std::shared_ptr<Framework::ISongProvider> provider)
 	{
 		m_logger = std::move(logger);
+		m_songProvider = std::move(provider);
 		m_logger->LogInfo("Inject from MainViewModel called");
+		InitializeSongsAsync();
 	}
 	IObservableVector<winrt::Audio_Player::SongModel> MainViewModel::Songs()
 	{
@@ -33,6 +35,15 @@ namespace winrt::Audio_Player::implementation
 		{
 			m_selectedSong = value;
 			RaisePropertyChanged(L"SelectedSong");
+		}
+	}
+	IAsyncAction MainViewModel::InitializeSongsAsync()
+	{
+		auto songs = co_await m_songProvider->GetAllSongsAsync();
+		for (auto& s : songs)
+		{
+			m_songs.Append(s);
+			m_logger->LogInfo("Song Added");
 		}
 	}
 }

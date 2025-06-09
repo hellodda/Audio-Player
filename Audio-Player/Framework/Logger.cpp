@@ -63,4 +63,12 @@ namespace winrt::Audio_Player::Framework
 	{
 		LogTrace(winrt::to_string(message));
 	}
+	void Logger::LogWarning(std::string const& message)
+	{
+		spdlog::warn(message);
+	}
+	void Logger::LogWarning(std::wstring const& message)
+	{
+		LogWarning(winrt::to_string(message));
+	}
 }
