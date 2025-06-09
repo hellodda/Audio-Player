@@ -13,22 +13,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
-    <ClCompile Include="ViewModels\Locator.cpp">
-      <Filter>ViewModels</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\BindableBase.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\Logger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="ViewModels\Locator.h">
-      <Filter>ViewModels</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\BindableBase.h">
       <Filter>Framework</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\Logger.h" />
+    <ClInclude Include="Framework\ILogger.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Wide310x150Logo.scale-200.png">
@@ -86,5 +82,9 @@
     <Page Include="MainWindow.xaml">
       <Filter>Views</Filter>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natvis" />
+    <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natstepfilter" />
   </ItemGroup>
 </Project>

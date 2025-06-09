@@ -2,6 +2,17 @@
 #include "App.xaml.h"
 #include "MainWindow.xaml.h"
 
+#include <Framework/Logger.h>
+#include <boost/di.hpp>
+
+//req!!! \/ \/ \/ \/ \/ \/ \/ \/
+
+#if __has_include("module.g.cpp")
+#  include "module.g.cpp"
+#endif
+
+#undef TERMINATE_APPLICATION_AFTER_EXCEPTION
+
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
 
@@ -17,7 +28,12 @@ namespace winrt::Audio_Player::implementation
             if (IsDebuggerPresent())
             {
                 auto errorMessage = e.Message();
+
+                #ifdef TERMINATE_APPLICATION_AFTER_EXCEPTION
+
                 __debugbreak();
+
+                #endif
             }
         });
 #endif
@@ -26,7 +42,40 @@ namespace winrt::Audio_Player::implementation
 
     void App::OnLaunched([[maybe_unused]] LaunchActivatedEventArgs const& e)
     {
-        window = make<MainWindow>();
+        Framework::Logger::OPEN_CONSOLE();
+
+        ConfigureDependencies();
+
         window.Activate();
+
+        Framework::Logger::LOG_INFORMATION("is working?");
+    }
+
+    auto App::ConfigureInjector()
+    {
+        auto injector = boost::di::make_injector(
+            boost::di::bind<Framework::ILogger>.to<Framework::Logger>()
+        );
+
+        return injector;
+    }
+
+    void App::ConfigureDependencies()
+    {
+        
+        auto injector = ConfigureInjector();
+    
+        auto logger = injector.create<std::shared_ptr<Framework::ILogger>>();
+        
+        auto mainViewModel = winrt::make<implementation::MainViewModel>();
+
+        mainViewModel.as<implementation::MainViewModel>()->Inject(logger);
+
+        window = make<MainWindow>();
+
+        window.as<MainWindow>()->Inject(
+            winrt::Audio_Player::MainViewModel{ mainViewModel },
+            logger
+        );
     }
 }

@@ -10,6 +10,10 @@ namespace winrt::Audio_Player::implementation
 
         void OnLaunched(Microsoft::UI::Xaml::LaunchActivatedEventArgs const&);
 
+        void ConfigureDependencies();
+
+        auto ConfigureInjector();
+
     private:
         winrt::Microsoft::UI::Xaml::Window window{ nullptr };
     };

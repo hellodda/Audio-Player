@@ -1,10 +1,12 @@
 ﻿#pragma once
 
 #include "MainViewModel.g.h"
+
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.Foundation.Collections.h>
-#include "Models/SongModel.h"
-#include "Framework/BindableBase.h"
+#include <Models/SongModel.h>
+#include <Framework/BindableBase.h>
+#include <Framework/Logger.h>
 
 using namespace winrt;
 using namespace winrt::Windows::Foundation;
@@ -16,6 +18,8 @@ namespace winrt::Audio_Player::implementation
     {
         MainViewModel();
 
+        void Inject(std::shared_ptr<Framework::ILogger> logger);
+
         IObservableVector<winrt::Audio_Player::SongModel> Songs();
         void Songs(IObservableVector<winrt::Audio_Player::SongModel> const& value);
 
@@ -26,8 +30,8 @@ namespace winrt::Audio_Player::implementation
 
         IObservableVector<Audio_Player::SongModel> m_songs = single_threaded_observable_vector<Audio_Player::SongModel>();
         Audio_Player::SongModel m_selectedSong{ nullptr };
-
-        void Initialize();
+        
+        std::shared_ptr<Framework::ILogger> m_logger{ nullptr };
     };
 }
 

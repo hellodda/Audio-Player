@@ -8,7 +8,12 @@ namespace winrt::Audio_Player::implementation
 {
 	MainViewModel::MainViewModel()
 	{
-		Initialize();
+		
+	}
+	void MainViewModel::Inject(std::shared_ptr<Framework::ILogger> logger)
+	{
+		m_logger = std::move(logger);
+		m_logger->LogInfo("Inject from MainViewModel called");
 	}
 	IObservableVector<winrt::Audio_Player::SongModel> MainViewModel::Songs()
 	{
@@ -28,16 +33,6 @@ namespace winrt::Audio_Player::implementation
 		{
 			m_selectedSong = value;
 			RaisePropertyChanged(L"SelectedSong");
-		}
-	}
-	void MainViewModel::Initialize()
-	{
-		for (int i = 0; i < 100; i++)
-		{
-			winrt::Audio_Player::SongModel model;
-			model.Title(L"Example Song");
-			model.ImagePath(L"C:\\Users\\user\\Downloads\\a52(.jpeg");
-			m_songs.Append(model);
 		}
 	}
 }

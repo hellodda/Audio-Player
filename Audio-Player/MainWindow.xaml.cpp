@@ -4,8 +4,6 @@
 #include "MainWindow.g.cpp"
 #endif
 
-#include "Models/SongModel.h"
-
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
 
@@ -16,9 +14,15 @@ namespace winrt::Audio_Player::implementation
 		ExtendsContentIntoTitleBar(true);
 	}
 
+	void MainWindow::Inject(Audio_Player::MainViewModel const& viewModel, std::shared_ptr<Framework::ILogger> logger)
+	{
+		m_viewModel = viewModel;
+		m_logger = std::move(logger);
+	}
+
 	winrt::Audio_Player::MainViewModel MainWindow::MainViewModel()
 	{
-		return winrt::Audio_Player::ViewModels::Locator::MainViewModel();
+		return m_viewModel;
 	}
 }
 

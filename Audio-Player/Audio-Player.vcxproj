@@ -81,13 +81,17 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
       <WarningLevel>Level4</WarningLevel>
-      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj /utf-8</AdditionalOptions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
     <ClCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <Link>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">windowsapp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
     <ClCompile>
@@ -108,7 +112,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\BindableBase.h" />
-    <ClInclude Include="ViewModels\Locator.h" />
+    <ClInclude Include="Framework\ILogger.h" />
+    <ClInclude Include="Framework\Logger.h" />
     <ClInclude Include="ViewModels\MainViewModel.h">
       <DependentUpon>ViewModels\MainViewModel.idl</DependentUpon>
       <SubType>Code</SubType>
@@ -131,7 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\BindableBase.cpp" />
-    <ClCompile Include="ViewModels\Locator.cpp" />
+    <ClCompile Include="Framework\Logger.cpp" />
     <ClCompile Include="ViewModels\MainViewModel.cpp">
       <DependentUpon>ViewModels\MainViewModel.idl</DependentUpon>
       <SubType>Code</SubType>
@@ -145,7 +150,6 @@
     <ClCompile Include="MainWindow.xaml.cpp">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </ClCompile>
-    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
     <ClCompile Include="Models\SongModel.cpp">
       <DependentUpon>Models\SongModel.idl</DependentUpon>
       <SubType>Code</SubType>
