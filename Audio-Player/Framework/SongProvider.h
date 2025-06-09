@@ -22,6 +22,8 @@ namespace winrt::Audio_Player::Framework
 
         IAsyncOperation<IVector<SongModel>> GetAllSongsAsync() override;
 
+        hstring GetDefaultPath() const override;
+
         hstring FolderName();
         void FolderName(hstring const& folderName);
 
@@ -31,6 +33,7 @@ namespace winrt::Audio_Player::Framework
 
         std::shared_ptr<ILogger> m_logger;
         StorageFolder m_localFolder{ nullptr };
+        StorageFolder m_songsFolder{ nullptr };
         hstring m_folderName{ L"Songs" };
     };
 }

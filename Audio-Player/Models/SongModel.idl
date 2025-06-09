@@ -7,5 +7,6 @@ namespace Audio_Player
         SongModel();
         String ImagePath;   
         String Title;
+        Int32 Id;
     }
 }

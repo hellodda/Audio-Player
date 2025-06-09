@@ -4,6 +4,9 @@
 #include "MainViewModel.g.cpp"
 #endif
 
+#include <Framework/RelayCommand.h>
+#include <Helpers/FilePicker.h>
+
 namespace winrt::Audio_Player::implementation
 {
 	MainViewModel::MainViewModel()
@@ -45,5 +48,20 @@ namespace winrt::Audio_Player::implementation
 			m_songs.Append(s);
 			m_logger->LogInfo("Song Added");
 		}
+		co_return;
+	}
+	ICommand MainViewModel::AddCommand()
+	{
+		if (!m_addCommand)
+		{
+			m_addCommand = winrt::make<Framework::RelayCommand>([this]()
+			{
+				m_logger->LogInfo("Add New Song Command Invoked.");
+				Helpers::FilePicker::PickAndCopyFileAsync(nullptr, m_songProvider->GetDefaultPath());
+
+				InitializeSongsAsync().get();
+			});
+		}
+		return m_addCommand;
 	}
 }

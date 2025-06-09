@@ -35,10 +35,17 @@ namespace winrt::Audio_Player::Framework
             SongModel model{};
          
             model.Title(file.DisplayName());  
+            model.Id(1);
+            model.ImagePath(L"C:\\Users\\user\\Downloads\\a52(.jpeg");
             songs.Append(model);
         }
 
         co_return songs;
+    }
+
+    hstring SongProvider::GetDefaultPath() const
+    {
+        return m_songsFolder.Path();
     }
 
     hstring SongProvider::FolderName()
@@ -56,6 +63,7 @@ namespace winrt::Audio_Player::Framework
         m_logger->LogInfo("InitializeFolderAsync Called From SongProvider");
 
         IStorageItem item = co_await m_localFolder.TryGetItemAsync(m_folderName);
+        m_songsFolder = item.as<StorageFolder>();
 
         if (!item || !item.IsOfType(StorageItemTypes::Folder))
         {

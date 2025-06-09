@@ -22,4 +22,15 @@ namespace winrt::Audio_Player::implementation
     {
         m_imagePath = value;
     }
+    int SongModel::Id()
+    {
+        return m_id;
+    }
+    void SongModel::Id(int const& value)
+    {
+        if (m_id != value)
+        {
+            m_id = value;
+        }
+    }
 }

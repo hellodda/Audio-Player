@@ -18,6 +18,8 @@
     </ClCompile>
     <ClCompile Include="Framework\Logger.cpp" />
     <ClCompile Include="Framework\SongProvider.cpp" />
+    <ClCompile Include="Framework\RelayCommand.cpp" />
+    <ClCompile Include="Helpers\FilePicker.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -28,6 +30,8 @@
     <ClInclude Include="Framework\ILogger.h" />
     <ClInclude Include="Framework\SongProvider.h" />
     <ClInclude Include="Framework\ISongProvider.h" />
+    <ClInclude Include="Framework\RelayCommand.h" />
+    <ClInclude Include="Helpers\FilePicker.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Wide310x150Logo.scale-200.png">

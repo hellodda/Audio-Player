@@ -12,6 +12,7 @@
 using namespace winrt;
 using namespace winrt::Windows::Foundation;
 using namespace winrt::Windows::Foundation::Collections;
+using namespace winrt::Microsoft::UI::Xaml::Input;
 
 namespace winrt::Audio_Player::implementation
 {
@@ -27,6 +28,9 @@ namespace winrt::Audio_Player::implementation
         Audio_Player::SongModel SelectedSong();
         void SelectedSong(Audio_Player::SongModel const& value);
 
+
+        ICommand AddCommand();
+
     private:
 
         IObservableVector<Audio_Player::SongModel> m_songs = single_threaded_observable_vector<Audio_Player::SongModel>();
@@ -35,6 +39,7 @@ namespace winrt::Audio_Player::implementation
         std::shared_ptr<Framework::ISongProvider> m_songProvider;
         std::shared_ptr<Framework::ILogger> m_logger{ nullptr };
 
+        ICommand m_addCommand{ nullptr };
         IAsyncAction InitializeSongsAsync();
     };
 }

@@ -3,8 +3,8 @@
 #include <unknwn.h>
 #include <restrictederrorinfo.h>
 #include <hstring.h>
-
-
+#include <wil/win32_helpers.h>
+#include <shobjidl_core.h>   
 
 
 // Undefine GetCurrentTime macro to prevent
@@ -27,3 +27,8 @@
 #include <winrt/Microsoft.UI.Dispatching.h>
 #include <wil/cppwinrt_helpers.h>
 
+#include <winrt/Windows.Storage.h>
+#include <winrt/Windows.Storage.Pickers.h>
+#include <winrt/Windows.Storage.AccessCache.h>
+#include <winrt/Windows.System.h>
+#include <winrt/Windows.ApplicationModel.Core.h>

@@ -15,10 +15,14 @@ namespace winrt::Audio_Player::implementation
         winrt::hstring ImagePath();
         void ImagePath(winrt::hstring const& value);
 
+        int Id();
+        void Id(int const& value);
+
     private:
 
-        winrt::hstring m_title;
-        winrt::hstring m_imagePath;
+        winrt::hstring m_title{};
+        winrt::hstring m_imagePath{};
+        int m_id{ 0 };
 
     };
 }

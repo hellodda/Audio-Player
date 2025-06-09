@@ -4,6 +4,8 @@
 
 #include <ViewModels/MainViewModel.h>
 
+
+
 namespace winrt::Audio_Player::implementation
 {
     struct MainWindow : MainWindowT<MainWindow>
@@ -18,12 +20,14 @@ namespace winrt::Audio_Player::implementation
 
         winrt::Audio_Player::MainViewModel MainViewModel();
 
+
     private:
 
         void Setup();
 
         Audio_Player::MainViewModel m_viewModel;
         std::shared_ptr<Framework::ILogger> m_logger;
+       
 
     public:
       
