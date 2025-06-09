@@ -35,7 +35,6 @@ namespace winrt::Audio_Player::Framework
             SongModel model{};
          
             model.Title(file.DisplayName());  
-      
             songs.Append(model);
         }
 

@@ -5,8 +5,6 @@
 #include <hstring.h>
 
 
-#define TERMINATE_APPLICATION_AFTER_EXCEPTION
-
 
 
 // Undefine GetCurrentTime macro to prevent

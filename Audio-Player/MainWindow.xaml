@@ -10,7 +10,7 @@
     mc:Ignorable="d"
     Title="Audio-Player">
 
-    <Grid>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -51,7 +51,10 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-       
+
+        <Border Grid.Column="0" Background="{ThemeResource ControlFillColorDefault}" VerticalAlignment="Top" Height="100">
+
+        </Border>
         
         <Image Grid.Column="1" Source="{x:Bind MainViewModel.SelectedSong.ImagePath, Mode=OneWay}" Stretch="UniformToFill"/>
 
