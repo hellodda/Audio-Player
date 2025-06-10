@@ -81,6 +81,7 @@ namespace winrt::Audio_Player::implementation
                         m_songProvider->GetDefaultPath()
                     );
                     m_logger->LogInfo("MainViewModel::AddCommand file picked and copied");
+                    m_songs.Clear();
                     co_await InitializeSongsAsync();
                     m_logger->LogInfo("MainViewModel::AddCommand completed");
                 }

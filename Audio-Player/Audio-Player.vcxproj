@@ -181,6 +181,9 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\Downloads\DefaultCover.png" />
+    <Image Include="Assets\DefaultCover.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </Image>
     <Image Include="Assets\LockScreenLogo.scale-200.png" />
     <Image Include="Assets\SplashScreen.scale-200.png" />
     <Image Include="Assets\Square150x150Logo.scale-200.png" />

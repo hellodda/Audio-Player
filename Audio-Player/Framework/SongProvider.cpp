@@ -64,7 +64,7 @@ namespace winrt::Audio_Player::Framework
             }
             else
             {
-                model.ImagePath(L"Assets\\StoreLogo.png");
+                model.ImagePath(L"Assets\\DefaultCover.png");
                 m_logger->LogInfo("GetAllSongsAsync: No valid thumbnail, using default image");
             }
 
