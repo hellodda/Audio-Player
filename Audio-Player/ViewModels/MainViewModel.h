@@ -14,16 +14,19 @@ using namespace winrt::Windows::Foundation;
 using namespace winrt::Windows::Foundation::Collections;
 using namespace winrt::Microsoft::UI::Xaml::Input;
 
+using namespace winrt::Audio_Player::Framework;
+using namespace winrt::Audio_Player;
+
 namespace winrt::Audio_Player::implementation
 {
-    struct MainViewModel : MainViewModelT<MainViewModel, Framework::BindableBase>
+    struct MainViewModel : MainViewModelT<MainViewModel, BindableBase>
     {
         MainViewModel();
 
-        void Inject(std::shared_ptr<Framework::ILogger> logger, std::shared_ptr<Framework::ISongProvider> provider);
+        void Inject(std::shared_ptr<ILogger> logger, std::shared_ptr<ISongProvider> provider);
 
-        IObservableVector<winrt::Audio_Player::SongModel> Songs();
-        void Songs(IObservableVector<winrt::Audio_Player::SongModel> const& value);
+        IObservableVector<Audio_Player::SongModel> Songs();
+        void Songs(IObservableVector<Audio_Player::SongModel> const& value);
 
         Audio_Player::SongModel SelectedSong();
         void SelectedSong(Audio_Player::SongModel const& value);
@@ -36,8 +39,8 @@ namespace winrt::Audio_Player::implementation
         IObservableVector<Audio_Player::SongModel> m_songs = single_threaded_observable_vector<Audio_Player::SongModel>();
         Audio_Player::SongModel m_selectedSong{ nullptr };
         
-        std::shared_ptr<Framework::ISongProvider> m_songProvider;
-        std::shared_ptr<Framework::ILogger> m_logger{ nullptr };
+        std::shared_ptr<ISongProvider> m_songProvider;
+        std::shared_ptr<ILogger> m_logger{ nullptr };
 
         ICommand m_addCommand{ nullptr };
         IAsyncAction InitializeSongsAsync();

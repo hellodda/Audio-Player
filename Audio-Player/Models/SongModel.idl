@@ -7,6 +7,8 @@ namespace Audio_Player
         SongModel();
         String ImagePath;   
         String Title;
+        Windows.Foundation.Uri SongPath;
+        Windows.Media.Core.MediaSource MediaSource;
         Int32 Id;
     }
 }

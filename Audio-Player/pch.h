@@ -32,3 +32,13 @@
 #include <winrt/Windows.Storage.AccessCache.h>
 #include <winrt/Windows.System.h>
 #include <winrt/Windows.ApplicationModel.Core.h>
+
+#include <spdlog/spdlog.h>
+
+struct LOG
+{
+	static void LOG_INFORMATION(std::string message)
+	{
+		spdlog::info(message);
+	}
+};

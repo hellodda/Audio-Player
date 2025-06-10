@@ -18,47 +18,57 @@
         </Grid.ColumnDefinitions>
 
 
+        <Grid Grid.Column="0">
 
-        <ListView x:Name="MyListView"
-          CanDragItems="True"
-          CanReorderItems="True"
-          AllowDrop="True"
-          SelectionMode="Single" 
-          ItemsSource="{x:Bind MainViewModel.Songs}"
-          HorizontalAlignment="Left"
-          Width="480" Grid.Column="0"
-          SelectedItem="{x:Bind MainViewModel.SelectedSong, Mode=TwoWay}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="Margin" Value="0,0,0,10" />
-                </Style>
-            </ListView.ItemContainerStyle>
+            <Border Grid.Row="0" Width="480" Background="{ThemeResource ControlFillColorDefault}" VerticalAlignment="Top" Height="100" Padding="10"  BorderThickness="1.5" BorderBrush="{ThemeResource ControlFillColorSecondary}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
+                    <Button Content="Add" Width="220" Height="100" Command="{x:Bind MainViewModel.AddCommand}"/>
+                    <Button Content="Remove" Width="220" Height="100"/>
+                </StackPanel>
+            </Border>
 
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="aui:SongModel">
-                    <Border Width="450" Height="85" CornerRadius="10" Background="{ThemeResource ControlFillColorDefaultBrush}">
-                        <StackPanel Orientation="Horizontal" Spacing="10" Padding="10">
+            <ListView x:Name="MyListView"
+                CanDragItems="True"
+                Margin="0 10 0 0"
+                CanReorderItems="True"
+                AllowDrop="True"
+                SelectionMode="Single" 
+                ItemsSource="{x:Bind MainViewModel.Songs}"
+                HorizontalAlignment="Left"
+                Width="480" Grid.Row="1"
+                SelectedItem="{x:Bind MainViewModel.SelectedSong, Mode=TwoWay}">
 
-                            <Border CornerRadius="10">
-                                <Image Width="60" Height="60" Source="{x:Bind ImagePath}" />
-                            </Border>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Margin" Value="0,0,0,10" />
+                    </Style>
+                </ListView.ItemContainerStyle>
 
-                            <TextBlock Text="{x:Bind Title}" VerticalAlignment="Center" FontSize="16" />
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="aui:SongModel">
+                        <Border Width="450" Height="85" CornerRadius="10" Background="{ThemeResource ControlFillColorDefaultBrush}">
+                            <StackPanel Orientation="Horizontal" Spacing="10" Padding="10">
 
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        
-        
-        <Border Grid.Column="0" Width="480" Background="{ThemeResource ControlFillColorDefault}" VerticalAlignment="Top" Height="100" Padding="10"  BorderThickness="1.5" BorderBrush="{ThemeResource ControlFillColorSecondary}">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
-                <Button Content="Add" Width="220" Height="100" Command="{x:Bind MainViewModel.AddCommand}"/>
-                <Button Content="Remove" Width="220" Height="100"/>
-            </StackPanel>
-        </Border>
+                                <Border CornerRadius="10">
+                                    <Image Width="60" Height="60" Source="{x:Bind ImagePath}" />
+                                </Border>
+
+                                <TextBlock Text="{x:Bind Title}" VerticalAlignment="Center" FontSize="16" />
+
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+        </Grid>
+    
 
         <Image Grid.Column="1" Source="{x:Bind MainViewModel.SelectedSong.ImagePath, Mode=OneWay}" Stretch="UniformToFill"/>
 
@@ -89,7 +99,7 @@
                     Width="auto"
                     Height="auto"
                     Stretch="UniformToFill"
-                    />
+                    Source="{x:Bind MainViewModel.SelectedSong.MediaSource, Mode=OneWay}"/>
 
     </Grid>
 </Window>

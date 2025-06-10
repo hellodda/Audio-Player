@@ -37,6 +37,8 @@ namespace winrt::Audio_Player::Framework
             model.Title(file.DisplayName());  
             model.Id(1);
             model.ImagePath(L"C:\\Users\\user\\Downloads\\a52(.jpeg");
+            model.SongPath(Uri(file.Path()));
+            model.MediaSource(winrt::Windows::Media::Core::MediaSource::CreateFromUri(Uri(file.Path())));
             songs.Append(model);
         }
 

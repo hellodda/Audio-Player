@@ -6,21 +6,43 @@
 
 namespace winrt::Audio_Player::implementation
 {
-    winrt::hstring SongModel::Title()
+    hstring SongModel::Title()
     {
         return m_title;
     }
-    void SongModel::Title(winrt::hstring const& value)
+    void SongModel::Title(hstring const& value)
     {
         m_title = value;
     }
-    winrt::hstring SongModel::ImagePath()
+    hstring SongModel::ImagePath()
     {
         return m_imagePath;
     }
-    void SongModel::ImagePath(winrt::hstring const& value)
+    void SongModel::ImagePath(hstring const& value)
     {
         m_imagePath = value;
+    }
+    Uri SongModel::SongPath()
+    {
+        return m_songPath;
+    }
+    void SongModel::SongPath(Uri const& value)
+    {
+        if (m_songPath != value)
+        {
+            m_songPath = value;
+        }
+    }
+    winrt::Windows::Media::Core::MediaSource SongModel::MediaSource()
+    {
+        return m_source;
+    }
+    void SongModel::MediaSource(winrt::Windows::Media::Core::MediaSource const& value)
+    {
+        if (m_source != value)
+        {
+            m_source = value;
+        }
     }
     int SongModel::Id()
     {

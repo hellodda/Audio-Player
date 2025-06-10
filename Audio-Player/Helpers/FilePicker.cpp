@@ -11,6 +11,7 @@ using namespace Windows::Storage::AccessCache;
 
 IAsyncAction winrt::Audio_Player::Helpers::FilePicker::PickAndCopyFileAsync(XamlRoot const& root, hstring const& to)
 {
+    LOG::LOG_INFORMATION("PickAndCopyFileAsync Called From FilePicker");
     FileOpenPicker picker;
     picker.ViewMode(PickerViewMode::List);
     picker.SuggestedStartLocation(PickerLocationId::MusicLibrary);
@@ -25,10 +26,15 @@ IAsyncAction winrt::Audio_Player::Helpers::FilePicker::PickAndCopyFileAsync(Xaml
     picker.FileTypeFilter().Append(L".flac");
 
     StorageFile file = co_await picker.PickSingleFileAsync();
-    if (file == nullptr) co_return;
+    if (file == nullptr)
+    {
+        LOG::LOG_INFORMATION("File Is Null!");
+        co_return;
+    }
 
     StorageFolder destFolder = co_await StorageFolder::GetFolderFromPathAsync(to);
 
     co_await file.CopyAsync(destFolder, file.Name(), NameCollisionOption::ReplaceExisting);
+    LOG::LOG_INFORMATION("Called But Work?");
     co_return;
 }

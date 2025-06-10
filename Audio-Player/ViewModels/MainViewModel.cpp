@@ -13,7 +13,7 @@ namespace winrt::Audio_Player::implementation
 	{
 		
 	}
-	void MainViewModel::Inject(std::shared_ptr<Framework::ILogger> logger, std::shared_ptr<Framework::ISongProvider> provider)
+	void MainViewModel::Inject(std::shared_ptr<ILogger> logger, std::shared_ptr<ISongProvider> provider)
 	{
 		m_logger = std::move(logger);
 		m_songProvider = std::move(provider);
@@ -54,12 +54,10 @@ namespace winrt::Audio_Player::implementation
 	{
 		if (!m_addCommand)
 		{
-			m_addCommand = winrt::make<Framework::RelayCommand>([this]()
+			m_addCommand = winrt::make<RelayCommand>([this]() -> IAsyncAction
 			{
-				m_logger->LogInfo("Add New Song Command Invoked.");
-				Helpers::FilePicker::PickAndCopyFileAsync(nullptr, m_songProvider->GetDefaultPath());
-
-				InitializeSongsAsync().get();
+					co_await Helpers::FilePicker::PickAndCopyFileAsync(nullptr, m_songProvider->GetDefaultPath());
+					co_await InitializeSongsAsync();
 			});
 		}
 		return m_addCommand;

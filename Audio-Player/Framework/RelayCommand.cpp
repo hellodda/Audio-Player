@@ -5,7 +5,10 @@ namespace winrt::Audio_Player::Framework
 {
 	void RelayCommand::Execute(winrt::Windows::Foundation::IInspectable const&) const
 	{
-		if (m_execute) m_execute();
+		if (m_execute)
+		{
+			m_execute();
+		}
 	}
 	bool RelayCommand::CanExecute(winrt::Windows::Foundation::IInspectable const&) const
 	{

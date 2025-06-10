@@ -2,6 +2,9 @@
 
 #include "SongModel.g.h"
 #include <winrt/Windows.Foundation.h>
+#include <winrt/Windows.Media.Core.h>
+
+using namespace winrt::Windows::Foundation;
 
 namespace winrt::Audio_Player::implementation
 {
@@ -9,19 +12,27 @@ namespace winrt::Audio_Player::implementation
     {
         SongModel() = default;
 
-        winrt::hstring Title();
-        void Title(winrt::hstring const& value);
+        hstring Title();
+        void Title(hstring const& value);
 
-        winrt::hstring ImagePath();
-        void ImagePath(winrt::hstring const& value);
+        hstring ImagePath();
+        void ImagePath(hstring const& value);
+
+        Uri SongPath();
+        void SongPath(Uri const& value);    
+
+        winrt::Windows::Media::Core::MediaSource MediaSource();
+        void MediaSource(winrt::Windows::Media::Core::MediaSource const& value);
 
         int Id();
         void Id(int const& value);
 
     private:
 
-        winrt::hstring m_title{};
-        winrt::hstring m_imagePath{};
+        hstring m_title{};
+        hstring m_imagePath{};
+        Uri m_songPath{ nullptr };
+        winrt::Windows::Media::Core::MediaSource m_source{ nullptr };
         int m_id{ 0 };
 
     };
