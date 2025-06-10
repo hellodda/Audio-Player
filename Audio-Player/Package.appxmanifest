@@ -47,5 +47,7 @@
 
   <Capabilities>
     <rescap:Capability Name="runFullTrust" />
+    <uap:Capability Name="musicLibrary"/>
+    <DeviceCapability Name="bluetooth"/>
   </Capabilities>
 </Package>

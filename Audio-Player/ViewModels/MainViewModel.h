@@ -33,6 +33,7 @@ namespace winrt::Audio_Player::implementation
 
 
         ICommand AddCommand();
+        ICommand DeleteCommand();
 
     private:
 
@@ -43,7 +44,9 @@ namespace winrt::Audio_Player::implementation
         std::shared_ptr<ILogger> m_logger{ nullptr };
 
         ICommand m_addCommand{ nullptr };
+        ICommand m_deleteCommand{ nullptr };
         IAsyncAction InitializeSongsAsync();
+
     };
 }
 

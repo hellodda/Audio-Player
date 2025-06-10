@@ -14,16 +14,6 @@ namespace winrt::Audio_Player::Framework
 		freopen_s(&stream, "CONIN$", "r", stdin);
 	}
 
-	void Audio_Player::Framework::Logger::LOG_EXCEPTION(std::string message)
-	{
-		spdlog::critical(message);
-	}
-
-	void Logger::LOG_INFORMATION(std::string message)
-	{
-		spdlog::info(message);
-	}
-
 	void Logger::LogInfo(std::string const& message)
 	{
 		spdlog::info(message);

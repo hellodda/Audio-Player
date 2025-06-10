@@ -9,8 +9,6 @@ namespace winrt::Audio_Player::Framework
 	public:
 
 		static void OPEN_CONSOLE();
-		static void LOG_EXCEPTION(std::string message);
-		static void LOG_INFORMATION(std::string message);
 
 		void LogInfo(std::string const& message) override;
 		void Info(std::wstring const& message);

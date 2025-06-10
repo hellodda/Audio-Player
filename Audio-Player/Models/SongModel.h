@@ -12,29 +12,27 @@ namespace winrt::Audio_Player::implementation
     {
         SongModel() = default;
 
-        hstring Title();
-        void Title(hstring const& value);
+        hstring Title() const noexcept;
+        void Title(hstring const& value) noexcept;
 
-        hstring ImagePath();
-        void ImagePath(hstring const& value);
+        hstring ImagePath() const noexcept;
+        void ImagePath(hstring const& value) noexcept;
 
-        Uri SongPath();
-        void SongPath(Uri const& value);    
+        hstring SongPath() const noexcept;
+        void SongPath(hstring const& value) noexcept;
 
-        winrt::Windows::Media::Core::MediaSource MediaSource();
-        void MediaSource(winrt::Windows::Media::Core::MediaSource const& value);
+        winrt::Windows::Media::Core::MediaSource MediaSource() const noexcept;
+        void MediaSource(winrt::Windows::Media::Core::MediaSource const& value) noexcept;
 
-        int Id();
-        void Id(int const& value);
+        int Id() const noexcept;
+        void Id(int const& value) noexcept;
 
     private:
-
         hstring m_title{};
         hstring m_imagePath{};
-        Uri m_songPath{ nullptr };
+        hstring m_songPath{};
         winrt::Windows::Media::Core::MediaSource m_source{ nullptr };
         int m_id{ 0 };
-
     };
 }
 

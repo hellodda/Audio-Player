@@ -21,11 +21,12 @@ namespace winrt::Audio_Player::Framework
         SongProvider(std::shared_ptr<ILogger> logger);
 
         IAsyncOperation<IVector<SongModel>> GetAllSongsAsync() override;
+        IAsyncAction DeleteByIdAsync(int id) override;
 
         hstring GetDefaultPath() const override;
 
-        hstring FolderName();
-        void FolderName(hstring const& folderName);
+        hstring FolderName() const noexcept;
+        void FolderName(hstring const& folderName) noexcept;
 
     private:
        

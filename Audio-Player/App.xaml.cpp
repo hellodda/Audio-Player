@@ -42,13 +42,13 @@ namespace winrt::Audio_Player::implementation
 
     void App::OnLaunched([[maybe_unused]] LaunchActivatedEventArgs const& e)
     {
-        Framework::Logger::OPEN_CONSOLE();
+        LOG::OPEN_CONSOLE();
 
         ConfigureDependencies();
 
         window.Activate();
 
-        Framework::Logger::LOG_INFORMATION("is working?");
+        LOG::LOG_INFORMATION("is working?");
     }
 
     auto App::ConfigureInjector()

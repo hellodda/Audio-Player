@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "MainWindow.xaml.h"
 #if __has_include("MainWindow.g.cpp")
 #include "MainWindow.g.cpp"
@@ -8,6 +8,8 @@
 
 using namespace winrt;
 using namespace winrt::Microsoft::UI::Xaml;
+using namespace winrt::Microsoft::UI::Xaml::Controls;
+using namespace winrt::Microsoft::UI::Xaml::Hosting;
 
 namespace winrt::Audio_Player::implementation
 {
@@ -28,3 +30,7 @@ namespace winrt::Audio_Player::implementation
 	}
 }
 
+void winrt::Audio_Player::implementation::MainWindow::SongsView_SelectionChanged(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Controls::SelectionChangedEventArgs const& e)
+{
+   
+}

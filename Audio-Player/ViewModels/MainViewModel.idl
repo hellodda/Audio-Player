@@ -10,5 +10,6 @@ namespace Audio_Player
         Windows.Foundation.Collections.IObservableVector<Audio_Player.SongModel> Songs;
         Audio_Player.SongModel SelectedSong;
         Microsoft.UI.Xaml.Input.ICommand AddCommand { get; };
+        Microsoft.UI.Xaml.Input.ICommand DeleteCommand { get; };
     }
 }

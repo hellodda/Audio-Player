@@ -11,6 +11,6 @@ namespace winrt::Audio_Player::Framework
 	{
 		virtual hstring GetDefaultPath() const = 0;
 		virtual winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Foundation::Collections::IVector<SongModel>> GetAllSongsAsync() = 0;
-		//virtual winrt::Windows::Foundation::IAsyncAction DeleteByIdAsync(int id) = 0;
+		virtual winrt::Windows::Foundation::IAsyncAction DeleteByIdAsync(int id) = 0;
 	};
 }
