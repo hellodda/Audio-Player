@@ -180,7 +180,6 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\Downloads\DefaultCover.png" />
     <Image Include="Assets\DefaultCover.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </Image>

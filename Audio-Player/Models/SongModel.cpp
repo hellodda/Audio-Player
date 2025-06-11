@@ -16,13 +16,17 @@ namespace winrt::Audio_Player::implementation
         m_title = value;
     }
 
-    hstring SongModel::ImagePath() const noexcept
+    BitmapImage SongModel::Image()
     {
-        return m_imagePath;
+        return m_image;
     }
-    void SongModel::ImagePath(hstring const& value) noexcept
+
+    void SongModel::Image(BitmapImage const& value)
     {
-        m_imagePath = value;
+        if (m_image != value)
+        {
+            m_image = value;
+        }
     }
 
     hstring SongModel::SongPath() const noexcept

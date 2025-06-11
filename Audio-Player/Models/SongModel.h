@@ -3,8 +3,10 @@
 #include "SongModel.g.h"
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.Media.Core.h>
+#include <winrt/Microsoft.UI.Xaml.Media.Imaging.h>
 
 using namespace winrt::Windows::Foundation;
+using namespace winrt::Microsoft::UI::Xaml::Media::Imaging;
 
 namespace winrt::Audio_Player::implementation
 {
@@ -15,8 +17,8 @@ namespace winrt::Audio_Player::implementation
         hstring Title() const noexcept;
         void Title(hstring const& value) noexcept;
 
-        hstring ImagePath() const noexcept;
-        void ImagePath(hstring const& value) noexcept;
+        BitmapImage Image();
+        void Image(BitmapImage const& value);
 
         hstring SongPath() const noexcept;
         void SongPath(hstring const& value) noexcept;
@@ -29,7 +31,7 @@ namespace winrt::Audio_Player::implementation
 
     private:
         hstring m_title{};
-        hstring m_imagePath{};
+        BitmapImage m_image{};
         hstring m_songPath{};
         winrt::Windows::Media::Core::MediaSource m_source{ nullptr };
         int m_id{ 0 };

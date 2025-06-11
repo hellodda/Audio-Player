@@ -4,11 +4,11 @@ namespace Audio_Player
     [default_interface]
     runtimeclass SongModel 
     {
-        SongModel();
-        String ImagePath;   
+        SongModel(); 
         String Title;
         String SongPath;
         Windows.Media.Core.MediaSource MediaSource;
+        Microsoft.UI.Xaml.Media.Imaging.BitmapImage Image;
         Int32 Id;
     }
 }

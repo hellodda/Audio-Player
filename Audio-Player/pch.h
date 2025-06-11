@@ -26,6 +26,7 @@
 #include <winrt/Microsoft.UI.Xaml.Shapes.h>
 #include <winrt/Microsoft.UI.Dispatching.h>
 #include <winrt/Microsoft.UI.Xaml.Hosting.h>
+#include <winrt/Microsoft.UI.Xaml.Media.Imaging.h>
 #include <wil/cppwinrt_helpers.h>
 
 #include <winrt/Windows.Storage.h>

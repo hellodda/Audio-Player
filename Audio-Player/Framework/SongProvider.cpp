@@ -7,6 +7,7 @@ using namespace Windows::Foundation;
 using namespace Windows::Foundation::Collections;
 using namespace Windows::Storage::FileProperties;
 using namespace Windows::Storage::Streams;
+using namespace winrt::Microsoft::UI::Xaml::Media::Imaging;
 
 namespace winrt::Audio_Player::Framework
 {
@@ -45,26 +46,15 @@ namespace winrt::Audio_Player::Framework
 
             SongModel model{};
 
-            auto thumbnail = co_await file.GetThumbnailAsync(ThumbnailMode::MusicView);
+            auto thumbnail = co_await file.GetThumbnailAsync(ThumbnailMode::MusicView, 512);
             if (thumbnail && thumbnail.Type() == ThumbnailType::Image)
             {
-                std::wstring fileName = L"cover_" + std::to_wstring(index) + L".jpg";
-                m_logger->LogInfo("GetAllSongsAsync: Creating cover file: " + winrt::to_string(fileName));
-
-                StorageFile coverFile = co_await m_localFolder.CreateFileAsync(fileName, CreationCollisionOption::ReplaceExisting);
-                m_logger->LogInfo("GetAllSongsAsync: Cover file created: " + winrt::to_string(coverFile.Path()));
-
-                IRandomAccessStream coverStream = co_await coverFile.OpenAsync(FileAccessMode::ReadWrite);
-                co_await RandomAccessStream::CopyAsync(thumbnail, coverStream);
-                co_await coverStream.FlushAsync();
-                coverStream.Close();
-
-                model.ImagePath(coverFile.Path());
-                m_logger->LogInfo("GetAllSongsAsync: Thumbnail copied to: " + winrt::to_string(coverFile.Path()));
+                BitmapImage map{};
+                co_await map.SetSourceAsync(thumbnail);
+                model.Image(map);
             }
             else
             {
-                model.ImagePath(L"Assets\\DefaultCover.png");
                 m_logger->LogInfo("GetAllSongsAsync: No valid thumbnail, using default image");
             }
 
@@ -91,54 +81,42 @@ namespace winrt::Audio_Player::Framework
     {
         m_logger->LogInfo("DeleteByIdAsync: Called with ID: " + std::to_string(id));
 
-        try
-        {
-            auto songs = co_await GetAllSongsAsync();
-            m_logger->LogInfo("DeleteByIdAsync: Retrieved " + std::to_string(songs.Size()) + " songs");
+       
+        auto songs = co_await GetAllSongsAsync();
+        m_logger->LogInfo("DeleteByIdAsync: Retrieved " + std::to_string(songs.Size()) + " songs");
 
-            bool songFound = false;
-            for (auto& song : songs)
+        bool songFound = false;
+        for (auto& song : songs)
+        {
+            if (song.Id() == id)
             {
-                if (song.Id() == id)
+                songFound = true;
+                m_logger->LogInfo("DeleteByIdAsync: Found song to delete - Title: " + winrt::to_string(song.Title()) +
+                    ", Path: " + winrt::to_string(song.SongPath()));
+
+                try
                 {
-                    songFound = true;
-                    m_logger->LogInfo("DeleteByIdAsync: Found song to delete - Title: " + winrt::to_string(song.Title()) +
-                        ", Path: " + winrt::to_string(song.SongPath()));
-
-                    try
-                    {
-                        auto file = co_await m_localFolder.GetFileAsync(song.SongPath());
-                        m_logger->LogInfo("DeleteByIdAsync: Deleting file: " + winrt::to_string(file.Path()));
-                        co_await file.DeleteAsync();
-                        m_logger->LogInfo("DeleteByIdAsync: File deleted successfully: " + winrt::to_string(song.SongPath()));
-                    }
-                    catch (const winrt::hresult_error& ex)
-                    {
-                        m_logger->LogWarning("DeleteByIdAsync: Failed to delete song file: " +
-                            winrt::to_string(song.SongPath()) +
-                            ". Error: " + winrt::to_string(ex.message()));
-                        throw;
-                    }
-                    break;
+                    auto file = co_await m_localFolder.GetFileAsync(song.SongPath());
+                    m_logger->LogInfo("DeleteByIdAsync: Deleting file: " + winrt::to_string(file.Path()));
+                    co_await file.DeleteAsync();
+                    m_logger->LogInfo("DeleteByIdAsync: File deleted successfully: " + winrt::to_string(song.SongPath()));
                 }
+                catch (const winrt::hresult_error& ex)
+                {
+                    m_logger->LogWarning("DeleteByIdAsync: Failed to delete song file: " +
+                        winrt::to_string(song.SongPath()) +
+                        ". Error: " + winrt::to_string(ex.message()));
+                    throw;
+                }
+                break;
             }
-
-            if (!songFound)
-            {
-                m_logger->LogWarning("DeleteByIdAsync: Song with ID " + std::to_string(id) + " not found");
-            }
-        }
-        catch (const std::exception& ex)
-        {
-            m_logger->LogError("DeleteByIdAsync: Exception caught: " + std::string(ex.what()));
-            throw;
-        }
-        catch (...)
-        {
-            m_logger->LogError("DeleteByIdAsync: Unknown exception caught");
-            throw;
         }
 
+        if (!songFound)
+        {
+            m_logger->LogWarning("DeleteByIdAsync: Song with ID " + std::to_string(id) + " not found");
+        }
+      
         m_logger->LogInfo("DeleteByIdAsync: Completed for ID: " + std::to_string(id));
         co_return;
     }
