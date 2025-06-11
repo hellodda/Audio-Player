@@ -55,6 +55,9 @@ namespace winrt::Audio_Player::Framework
             }
             else
             {
+                BitmapImage map{};
+                map.UriSource(Uri{ L"ms-appx:///Assets/DefaultCover.jpg" });
+                model.Image(map);
                 m_logger->LogInfo("GetAllSongsAsync: No valid thumbnail, using default image");
             }
 

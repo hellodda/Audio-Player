@@ -180,7 +180,7 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\DefaultCover.png">
+    <Image Include="Assets\DefaultCover.jpg">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </Image>
     <Image Include="Assets\LockScreenLogo.scale-200.png" />

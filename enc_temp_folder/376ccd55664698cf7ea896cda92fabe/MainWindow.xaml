@@ -115,6 +115,7 @@
                     Width="auto"
                     Height="auto"
                     Stretch="UniformToFill"
+                    Loaded="Playerok_Loaded"   
                     Source="{x:Bind MainViewModel.SelectedSong.MediaSource, Mode=OneWay}"/>
 
     </Grid>
