@@ -11,64 +11,41 @@
     Title="Audio-Player">
 
     <Grid Background="{ThemeResource SystemChromeBlackLowColor}">
-
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-
         <Grid Grid.Column="0">
-
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Image Grid.Row="0" Width="480" VerticalAlignment="Top" Height="100" Source="{x:Bind MainViewModel.SelectedSong.Image, Mode=OneWay}" Stretch="UniformToFill"/>
+            <Image Grid.Row="0" Width="480" Height="100" VerticalAlignment="Top" Source="{x:Bind MainViewModel.SelectedSong.Image, Mode=OneWay}" Stretch="UniformToFill"/>
 
-            <Border Grid.Row="0" Width="480" VerticalAlignment="Top" Height="100">
-
+            <Border Grid.Row="0" Width="480" Height="100" VerticalAlignment="Top">
                 <Border.Background>
                     <AcrylicBrush TintColor="White" TintOpacity="0.1"/>
                 </Border.Background>
-
-             
                 <Border Width="480" Height="98" VerticalAlignment="Top" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="3">
-
                         <Button Width="230" Height="80" Command="{x:Bind MainViewModel.AddCommand}" CornerRadius="20 0 0 20">
-                            <SymbolIcon Symbol="Add" Width="24" Height="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <SymbolIcon Symbol="Add"/>
                         </Button>
-
                         <Button Width="230" Height="80" Command="{x:Bind MainViewModel.DeleteCommand}" CornerRadius="0 20 20 0">
-                            <SymbolIcon Symbol="Delete" Width="24" Height="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <SymbolIcon Symbol="Delete"/>
                         </Button>
-
                     </StackPanel>
                 </Border>
-               
-             
             </Border>
 
-            <ListView x:Name="SongsView"
-                CanDragItems="True"
-                CanReorderItems="True"
-                AllowDrop="True"
-                SelectionMode="Single" 
-                ItemsSource="{x:Bind MainViewModel.Songs}"
-                HorizontalAlignment="Left"
-                Width="480" Grid.Row="1"
-                SelectionChanged="SongsView_SelectionChanged"
-                SelectedItem="{x:Bind MainViewModel.SelectedSong, Mode=TwoWay}">
-
+            <ListView x:Name="SongsView" CanDragItems="True" CanReorderItems="True" AllowDrop="True" SelectionMode="Single" ItemsSource="{x:Bind MainViewModel.Songs}" Width="480" Grid.Row="1" SelectionChanged="SongsView_SelectionChanged" SelectedItem="{x:Bind MainViewModel.SelectedSong, Mode=TwoWay}">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="Margin" Value="0,0,0,8"/>
                     </Style>
                 </ListView.ItemContainerStyle>
-
-
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="aui:SongModel">
                         <Grid>
@@ -76,23 +53,18 @@
                                 <Image Width="450" Height="85" Source="{x:Bind Image}" Stretch="UniformToFill"/>
                             </Border>
                             <Border Width="450" Height="85" CornerRadius="10">
-
                                 <Border.Background>
                                     <AcrylicBrush TintColor="White" TintOpacity="0.01"/>
                                 </Border.Background>
                                 <Grid>
-
                                     <Border Padding="4">
                                         <Border Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="76" Width="442" CornerRadius="10">
-
-
                                             <StackPanel Orientation="Horizontal" Spacing="10" Padding="10">
-
                                                 <Border CornerRadius="10">
-                                                    <Image Width="60" Height="60" Source="{x:Bind Image}" />
+                                                    <Image Width="60" Height="60" Source="{x:Bind Image}"/>
                                                 </Border>
                                                 <StackPanel Orientation="Vertical" VerticalAlignment="Center" Spacing="2">
-                                                    <TextBlock Text="{x:Bind Title}" TextTrimming="CharacterEllipsis" FontSize="12" />
+                                                    <TextBlock Text="{x:Bind Title}" TextTrimming="CharacterEllipsis" FontSize="12"/>
                                                     <TextBlock Text="{x:Bind Author}" FontSize="8"/>
                                                 </StackPanel>
                                             </StackPanel>
@@ -104,21 +76,13 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
-
         </Grid>
 
-
-        <Border Grid.Column="1" Background="{ThemeResource SystemAccentColor}"/>
-        <Image Grid.Column="1" Source="{x:Bind MainViewModel.SelectedSong.Image, Mode=OneWay}" Stretch="UniformToFill"/>
-
-
-        <Border Grid.Column="1" Background="{ThemeResource ControlFillColorDefault}"/>
-
-
+        <Border Grid.Column="1" Background="{ThemeResource SystemAccentColor}">
+            <Image Grid.Column="1" Source="{x:Bind MainViewModel.SelectedSong.Image, Mode=OneWay}" Stretch="UniformToFill"/>
+        </Border>
 
         <Border Grid.Column="1">
-
             <Border.Background>
                 <AcrylicBrush TintColor="White" TintOpacity="0.01"/>
             </Border.Background>
@@ -126,20 +90,12 @@
 
         <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="5">
             <Border CornerRadius="10">
-                <Image Source="{x:Bind MainViewModel.SelectedSong.Image, Mode=OneWay}" Stretch="UniformToFill" Width="250" Height="250"/>
+                <Image Width="250" Height="250" Stretch="UniformToFill" Source="{x:Bind MainViewModel.SelectedSong.Image, Mode=OneWay}"/>
             </Border>
             <TextBlock Text="{x:Bind MainViewModel.SelectedSong.Title, Mode=OneWay}"/>
         </StackPanel>
-        
-      
-        
-        <MediaPlayerElement x:Name="Playerok" Grid.Column="1"
-                    AreTransportControlsEnabled="True"
-                    AutoPlay="False"
-                    Width="auto"
-                    Height="auto"
-                    Stretch="UniformToFill"
-                    Source="{x:Bind MainViewModel.SelectedSong.MediaSource, Mode=OneWay}"/>
 
+        <MediaPlayerElement x:Name="Playerok" Grid.Column="1" AreTransportControlsEnabled="True" AutoPlay="False" Stretch="UniformToFill" Source="{x:Bind MainViewModel.SelectedSong.MediaSource, Mode=OneWay}"/>
     </Grid>
+    
 </Window>
