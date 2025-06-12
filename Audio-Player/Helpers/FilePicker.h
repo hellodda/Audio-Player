@@ -12,7 +12,7 @@ namespace winrt::Audio_Player::Helpers
 {
 	struct FilePicker
 	{
-		static IAsyncAction PickAndCopyFileAsync(XamlRoot const& root, hstring const& to);
+		static IAsyncAction PickAndCopyFileAsync(hstring const& to);
 	};
 }
 

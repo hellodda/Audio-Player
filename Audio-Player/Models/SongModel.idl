@@ -6,6 +6,7 @@ namespace Audio_Player
     {
         SongModel(); 
         String Title;
+        String Author;
         String SongPath;
         Windows.Media.Core.MediaSource MediaSource;
         Microsoft.UI.Xaml.Media.Imaging.BitmapImage Image;

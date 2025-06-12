@@ -16,6 +16,19 @@ namespace winrt::Audio_Player::implementation
         m_title = value;
     }
 
+    hstring SongModel::Author() const noexcept
+    {
+        return m_author;
+    }
+
+    void SongModel::Author(hstring const& value) noexcept
+    {
+        if (m_author != value)
+        {
+            m_author = value;
+        }
+    }
+
     BitmapImage SongModel::Image()
     {
         return m_image;

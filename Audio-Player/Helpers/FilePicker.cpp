@@ -9,7 +9,7 @@ using namespace winrt::Microsoft::UI::Xaml;
 using namespace Windows::Storage::AccessCache;
 
 
-IAsyncAction winrt::Audio_Player::Helpers::FilePicker::PickAndCopyFileAsync(XamlRoot const& root, hstring const& to)
+IAsyncAction winrt::Audio_Player::Helpers::FilePicker::PickAndCopyFileAsync(hstring const& to)
 {
     LOG::LOG_INFORMATION("PickAndCopyFileAsync Called From FilePicker");
     FileOpenPicker picker;

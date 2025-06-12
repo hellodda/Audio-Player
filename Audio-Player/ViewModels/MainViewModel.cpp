@@ -56,14 +56,39 @@ namespace winrt::Audio_Player::implementation
 
     IAsyncAction MainViewModel::InitializeSongsAsync()
     {
+        if (m_selectedSong)
+        {
+            m_selectedSong = nullptr;
+        }
+     
+        m_songs.Clear();
+
+
         m_logger->LogInfo("MainViewModel::InitializeSongsAsync started");
+
         auto songs = co_await m_songProvider->GetAllSongsAsync();
         m_logger->LogInfo("MainViewModel::InitializeSongsAsync retrieved " + std::to_string(songs.Size()) + " songs");
+
+
         for (auto& s : songs)
         {
-            m_songs.Append(s);
-            m_logger->LogInfo("MainViewModel::InitializeSongsAsync appended Song ID: " + std::to_string(s.Id()));
+            bool exists = std::any_of(begin(m_songs), end(m_songs), [&](const auto& existingSong) {
+                return existingSong.Id() == s.Id();
+                });
+
+            if (!exists)
+            {
+                m_songs.Append(s);
+                m_logger->LogInfo("Appended Song ID: " + std::to_string(s.Id()));
+            }
+            else
+            {
+                m_logger->LogInfo("Skipped duplicate Song ID: " + std::to_string(s.Id()));
+            }
         }
+
+        SelectedSong(*m_songs.First());
+
         m_logger->LogInfo("MainViewModel::InitializeSongsAsync completed");
         co_return;
     }
@@ -76,12 +101,8 @@ namespace winrt::Audio_Player::implementation
                 [this]() -> IAsyncAction
                 {
                     m_logger->LogInfo("MainViewModel::AddCommand invoked");
-                    co_await Helpers::FilePicker::PickAndCopyFileAsync(
-                        nullptr,
-                        m_songProvider->GetDefaultPath()
-                    );
+                    co_await Helpers::FilePicker::PickAndCopyFileAsync(m_songProvider->GetDefaultPath());
                     m_logger->LogInfo("MainViewModel::AddCommand file picked and copied");
-                    m_songs.Clear();
                     co_await InitializeSongsAsync();
                     m_logger->LogInfo("MainViewModel::AddCommand completed");
                 }
@@ -98,16 +119,19 @@ namespace winrt::Audio_Player::implementation
                 [this]() -> IAsyncAction
                 {
                     m_logger->LogInfo("MainViewModel::DeleteCommand invoked");
-                    if (m_selectedSong)
-                    {
-                        m_logger->LogInfo("MainViewModel::DeleteCommand deleting Song ID: " + std::to_string(m_selectedSong.Id()));
-                        co_await m_songProvider->DeleteByIdAsync(m_selectedSong.Id());
-                        m_logger->LogInfo("MainViewModel::DeleteCommand deletion completed for ID: " + std::to_string(m_selectedSong.Id()));
+                  
+                    m_logger->LogInfo("MainViewModel::DeleteCommand deleting Song ID: " + std::to_string(m_selectedSong.Id()));
+                      
+                    if (m_selectedSong) {
+                        co_await m_songProvider->DeleteSongByIdAsync(m_selectedSong.Id());
+                        co_await InitializeSongsAsync();
                     }
-                    else
-                    {
-                        m_logger->LogWarning("MainViewModel::DeleteCommand called with no SelectedSong");
+                    else {
+                        m_logger->LogWarning("MainViewModel::DeleteCommand: could not find song with Id=" + std::to_string(m_selectedSong.Id()));
                     }
+
+                    m_logger->LogInfo("MainViewModel::DeleteCommand deletion completed for ID: " + std::to_string(m_selectedSong.Id()));
+                 
                     co_return;
                 }
             );

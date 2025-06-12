@@ -17,6 +17,9 @@ namespace winrt::Audio_Player::implementation
         hstring Title() const noexcept;
         void Title(hstring const& value) noexcept;
 
+        hstring Author() const noexcept;
+        void Author(hstring const& value) noexcept;
+
         BitmapImage Image();
         void Image(BitmapImage const& value);
 
@@ -31,6 +34,7 @@ namespace winrt::Audio_Player::implementation
 
     private:
         hstring m_title{};
+        hstring m_author{};
         BitmapImage m_image{};
         hstring m_songPath{};
         winrt::Windows::Media::Core::MediaSource m_source{ nullptr };

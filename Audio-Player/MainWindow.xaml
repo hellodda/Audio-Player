@@ -10,11 +10,7 @@
     mc:Ignorable="d"
     Title="Audio-Player">
 
-    <Window.SystemBackdrop>
-        <MicaBackdrop/>
-    </Window.SystemBackdrop>
-    
-    <Grid>
+    <Grid Background="{ThemeResource SystemChromeBlackLowColor}">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -29,16 +25,34 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Border Grid.Row="0" Width="480" Background="{ThemeResource ControlFillColorDefault}" VerticalAlignment="Top" Height="100" Padding="10"  BorderThickness="1.5" BorderBrush="{ThemeResource ControlFillColorSecondary}">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
-                    <Button Content="Add" Width="220" Height="100" Command="{x:Bind MainViewModel.AddCommand}"/>
-                    <Button Content="Remove" Width="220" Height="100" Command="{x:Bind MainViewModel.DeleteCommand}"/>
-                </StackPanel>
+            <Image Grid.Row="0" Width="480" VerticalAlignment="Top" Height="100" Source="{x:Bind MainViewModel.SelectedSong.Image, Mode=OneWay}" Stretch="UniformToFill"/>
+
+            <Border Grid.Row="0" Width="480" VerticalAlignment="Top" Height="100">
+
+                <Border.Background>
+                    <AcrylicBrush TintColor="White" TintOpacity="0.1"/>
+                </Border.Background>
+
+             
+                <Border Width="480" Height="98" VerticalAlignment="Top" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="3">
+
+                        <Button Width="230" Height="80" Command="{x:Bind MainViewModel.AddCommand}" CornerRadius="20 0 0 20">
+                            <SymbolIcon Symbol="Add" Width="24" Height="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Button>
+
+                        <Button Width="230" Height="80" Command="{x:Bind MainViewModel.DeleteCommand}" CornerRadius="0 20 20 0">
+                            <SymbolIcon Symbol="Delete" Width="24" Height="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Button>
+
+                    </StackPanel>
+                </Border>
+               
+             
             </Border>
 
             <ListView x:Name="SongsView"
                 CanDragItems="True"
-                Margin="0 10 0 0"
                 CanReorderItems="True"
                 AllowDrop="True"
                 SelectionMode="Single" 
@@ -50,9 +64,10 @@
 
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
-                        <Setter Property="Margin" Value="0,0,0,10" />
+                        <Setter Property="Margin" Value="0,0,0,8"/>
                     </Style>
                 </ListView.ItemContainerStyle>
+
 
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="aui:SongModel">
@@ -65,16 +80,25 @@
                                 <Border.Background>
                                     <AcrylicBrush TintColor="White" TintOpacity="0.01"/>
                                 </Border.Background>
+                                <Grid>
 
-                                <StackPanel Orientation="Horizontal" Spacing="10" Padding="10">
+                                    <Border Padding="4">
+                                        <Border Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="76" Width="442" CornerRadius="10">
 
-                                    <Border CornerRadius="10">
-                                        <Image Width="60" Height="60" Source="{x:Bind Image}" />
+
+                                            <StackPanel Orientation="Horizontal" Spacing="10" Padding="10">
+
+                                                <Border CornerRadius="10">
+                                                    <Image Width="60" Height="60" Source="{x:Bind Image}" />
+                                                </Border>
+                                                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Spacing="2">
+                                                    <TextBlock Text="{x:Bind Title}" TextTrimming="CharacterEllipsis" FontSize="12" />
+                                                    <TextBlock Text="{x:Bind Author}" FontSize="8"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Border>
                                     </Border>
-
-                                    <TextBlock Text="{x:Bind Title}" VerticalAlignment="Center" FontSize="16" />
-
-                                </StackPanel>
+                                </Grid>
                             </Border>
                         </Grid>
                     </DataTemplate>

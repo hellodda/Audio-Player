@@ -5,8 +5,6 @@ VisualStudioVersion = 17.14.36127.28
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Audio-Player", "Audio-Player\Audio-Player.vcxproj", "{86F5041A-2663-46CB-ACCB-B44D2EB97F6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{F9D6C646-9F70-45BF-BFFC-CD0B724FE0E8}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM64 = Debug|ARM64
@@ -35,24 +33,6 @@ Global
 		{86F5041A-2663-46CB-ACCB-B44D2EB97F6D}.Release|x86.ActiveCfg = Release|Win32
 		{86F5041A-2663-46CB-ACCB-B44D2EB97F6D}.Release|x86.Build.0 = Release|Win32
 		{86F5041A-2663-46CB-ACCB-B44D2EB97F6D}.Release|x86.Deploy.0 = Release|Win32
-		{F9D6C646-9F70-45BF-BFFC-CD0B724FE0E8}.Debug|ARM64.ActiveCfg = Debug|ARM64
-		{F9D6C646-9F70-45BF-BFFC-CD0B724FE0E8}.Debug|ARM64.Build.0 = Debug|ARM64
-		{F9D6C646-9F70-45BF-BFFC-CD0B724FE0E8}.Debug|ARM64.Deploy.0 = Debug|ARM64
-		{F9D6C646-9F70-45BF-BFFC-CD0B724FE0E8}.Debug|x64.ActiveCfg = Debug|x64
-		{F9D6C646-9F70-45BF-BFFC-CD0B724FE0E8}.Debug|x64.Build.0 = Debug|x64
-		{F9D6C646-9F70-45BF-BFFC-CD0B724FE0E8}.Debug|x64.Deploy.0 = Debug|x64
-		{F9D6C646-9F70-45BF-BFFC-CD0B724FE0E8}.Debug|x86.ActiveCfg = Debug|x86
-		{F9D6C646-9F70-45BF-BFFC-CD0B724FE0E8}.Debug|x86.Build.0 = Debug|x86
-		{F9D6C646-9F70-45BF-BFFC-CD0B724FE0E8}.Debug|x86.Deploy.0 = Debug|x86
-		{F9D6C646-9F70-45BF-BFFC-CD0B724FE0E8}.Release|ARM64.ActiveCfg = Release|ARM64
-		{F9D6C646-9F70-45BF-BFFC-CD0B724FE0E8}.Release|ARM64.Build.0 = Release|ARM64
-		{F9D6C646-9F70-45BF-BFFC-CD0B724FE0E8}.Release|ARM64.Deploy.0 = Release|ARM64
-		{F9D6C646-9F70-45BF-BFFC-CD0B724FE0E8}.Release|x64.ActiveCfg = Release|x64
-		{F9D6C646-9F70-45BF-BFFC-CD0B724FE0E8}.Release|x64.Build.0 = Release|x64
-		{F9D6C646-9F70-45BF-BFFC-CD0B724FE0E8}.Release|x64.Deploy.0 = Release|x64
-		{F9D6C646-9F70-45BF-BFFC-CD0B724FE0E8}.Release|x86.ActiveCfg = Release|x86
-		{F9D6C646-9F70-45BF-BFFC-CD0B724FE0E8}.Release|x86.Build.0 = Release|x86
-		{F9D6C646-9F70-45BF-BFFC-CD0B724FE0E8}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
